@@ -1,7 +1,10 @@
 __author__="Gábor Tóth-Molnár"
-__version__="1.1.1"
+__version__="1.1.2"
 
 # changelog:
+# 1.1.2:
+# in FileConverters CsvColumnToArray tries to return float() values
+#
 # 1.1.1:
 # appended class Statistics with Rescale, MeanNormalization
 #
@@ -197,8 +200,11 @@ class FileConverters:
         for line in inputFile:
             snippedtobeList = [x.strip() for x in line.split(delimiter)]
             for i in range(0, len(columns)):
-                if HumanMode:
-                    output[i].append(snippedtobeList[columns[i]-1])
-                else:
-                    output[i].append(snippedtobeList[columns[i]])
+                try:
+                    if HumanMode:
+                        output[i].append(float(snippedtobeList[columns[i]-1]))
+                    else:
+                        output[i].append(float(snippedtobeList[columns[i]]))
+                except:
+                    raise TypeError("Array has a NaN element")
         return output
