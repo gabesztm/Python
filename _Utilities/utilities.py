@@ -1,7 +1,10 @@
 __author__="Gábor Tóth-Molnár"
-__version__="1.1.2"
+__version__="1.1.3"
 
 # changelog:
+# 1.1.3:
+# added option to CsvColumnToArray: skip dummy lines beside header
+#
 # 1.1.2:
 # in FileConverters CsvColumnToArray tries to return float() values
 #
@@ -188,13 +191,15 @@ class Statistics:
 class FileConverters:
     def __init__(self):
         pass
-    def CsvColumnToArray(CsvFile,IsHeader, HumanMode, columns,delimiter):
+    def CsvColumnToArray(CsvFile,IsHeader, HumanMode, columns,delimiter,DummyLinesBesideHeader=0):
         "CsvFile: the inputfile-----IsHEader: if the first line should be omitted-----Humanmode: index of first column is 1st instead of 0th.------columns: list containing column indexes according to Humanmode------delimiter: delimiter string of the csv file"
         inputFile=open(CsvFile, "r",encoding="UTF-8")
         inputFile.seek(0)
         output=[]
         for i in range(0, len(columns)):
             output.append([])
+        for i in range(0,DummyLinesBesideHeader):
+            inputFile.readline()
         if IsHeader:
             inputFile.readline()
         for line in inputFile:
