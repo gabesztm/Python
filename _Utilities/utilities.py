@@ -1,7 +1,10 @@
 __author__="Gábor Tóth-Molnár"
-__version__="1.1.3"
+__version__="1.2.0"
 
 # changelog:
+# 1.2.0:
+# added class: Science with CelsiusToFahrenheit and FahrenheitToCelsius, and HeatIndexFahrenheit
+#
 # 1.1.3:
 # added option to CsvColumnToArray: skip dummy lines beside header
 #
@@ -213,3 +216,27 @@ class FileConverters:
                 except:
                     raise TypeError("Array has a NaN element")
         return output
+
+class Science:
+    def __init__(self):
+        pass
+    def CelsiusToFahrenheit(degC):
+        return degC*1.8+32
+
+    def FahreinheitToCelsius(degF):
+        return (degF-32.0)/1.8
+
+    def HeatIndexFahrenheit(degF,RH,self,degC=True):
+        c1=-42.379
+        c2=2.04901523
+        c3=10.14333127
+        c4=-0.22475541
+        c5=-6.83783*pow(10,-3)
+        c6=-5.481717*pow(10,-2)
+        c7=1.22874*pow(10,-3)
+        c8=8.5282*pow(10,-4)
+        c9=-1.99*pow(10,-6)
+        if degC:
+            return self.FahreinheitToCelsius(c1+c2*degF+c3*RH+c4*degF*RH+c5*pow(degF,2)+c6*pow(RH,2)+c7*pow(degF,2)*RH+c8*degF*pow(RH,2)+c9*pow(degF,2)*pow(RH,2))
+        else:
+            return c1+c2*degF+c3*RH+c4*degF*RH+c5*pow(degF,2)+c6*pow(RH,2)+c7*pow(degF,2)*RH+c8*degF*pow(RH,2)+c9*pow(degF,2)*pow(RH,2)
