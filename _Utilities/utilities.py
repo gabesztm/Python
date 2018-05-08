@@ -1,7 +1,10 @@
 __author__="Gábor Tóth-Molnár"
-__version__="1.2.0"
+__version__="1.2.1"
 
 # changelog:
+# 1.2.1:
+# FileConverters renamed to FileTweaks. LogFilenameGenerator added to this class.
+#
 # 1.2.0:
 # added class: Science with CelsiusToFahrenheit and FahrenheitToCelsius, and HeatIndexFahrenheit
 #
@@ -191,7 +194,7 @@ class Statistics:
 
 
 
-class FileConverters:
+class FileTweaks:
     def __init__(self):
         pass
     def CsvColumnToArray(CsvFile,IsHeader, HumanMode, columns,delimiter,DummyLinesBesideHeader=0):
@@ -216,6 +219,16 @@ class FileConverters:
                 except:
                     raise TypeError("Array has a NaN element")
         return output
+
+    def LogFilenameGenerator(folder,CommonName):
+        import os.path
+        for i in range(1, 1000):
+            FileSerial = str(i)
+            LogFileName = str(CommonName)+'_' + FileSerial.zfill(3) + '.csv'
+            LogFile = os.path.join(folder, LogFileName)
+            IsFile = os.path.isfile(LogFile)
+            if not IsFile:
+                return LogFile
 
 class Science:
     def __init__(self):
