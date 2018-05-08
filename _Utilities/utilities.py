@@ -6,7 +6,7 @@ __version__="1.2.1"
 # FileConverters renamed to FileTweaks. LogFilenameGenerator added to this class.
 #
 # 1.2.0:
-# added class: Science with CelsiusToFahrenheit and FahrenheitToCelsius, and HeatIndexFahrenheit
+# added class: Science with CelsiusToFahrenheit and FahrenheitToCelsius, HeatIndex and HeatIndexSafetyLevel
 #
 # 1.1.3:
 # added option to CsvColumnToArray: skip dummy lines beside header
@@ -221,6 +221,7 @@ class FileTweaks:
         return output
 
     def LogFilenameGenerator(folder,CommonName):
+        "generates a running index in the filename"
         import os.path
         for i in range(1, 1000):
             FileSerial = str(i)
@@ -239,7 +240,8 @@ class Science:
     def FahreinheitToCelsius(degF):
         return (degF-32.0)/1.8
 
-    def HeatIndexFahrenheit(degF,RH,self,degC=True):
+    def HeatIndex(degF,RH, self, SunExposure=False,degC=True):
+        "returns the heat index in Celsius or Fahrenheit value"
         c1=-42.379
         c2=2.04901523
         c3=10.14333127
@@ -250,6 +252,44 @@ class Science:
         c8=8.5282*pow(10,-4)
         c9=-1.99*pow(10,-6)
         if degC:
-            return self.FahreinheitToCelsius(c1+c2*degF+c3*RH+c4*degF*RH+c5*pow(degF,2)+c6*pow(RH,2)+c7*pow(degF,2)*RH+c8*degF*pow(RH,2)+c9*pow(degF,2)*pow(RH,2))
+            HI=self.FahreinheitToCelsius(c1+c2*degF+c3*RH+c4*degF*RH+c5*pow(degF,2)+c6*pow(RH,2)+c7*pow(degF,2)*RH+c8*degF*pow(RH,2)+c9*pow(degF,2)*pow(RH,2))
+            if SunExposure:
+                return HI+8.0
+            else:
+                return HI
         else:
-            return c1+c2*degF+c3*RH+c4*degF*RH+c5*pow(degF,2)+c6*pow(RH,2)+c7*pow(degF,2)*RH+c8*degF*pow(RH,2)+c9*pow(degF,2)*pow(RH,2)
+            HI=c1+c2*degF+c3*RH+c4*degF*RH+c5*pow(degF,2)+c6*pow(RH,2)+c7*pow(degF,2)*RH+c8*degF*pow(RH,2)+c9*pow(degF,2)*pow(RH,2)
+            if SunExposure:
+                return HI+14.0
+            else:
+                return HI
+
+    def HeatIndexSafetyLevel(HI, degC=True):
+        "returns the safety level and risks according to the heat index."
+        levels=["Caution",
+                "Extreme Caution",
+                "Danger",
+                "Extreme Danger"]
+
+        warnings=["Fatigue is possible with prolonged exposure and activity. Continuing activity could result in heat cramps.",
+                  "Heat cramps and heat exhaustion are possible. Continuing activity could result in heat stroke.",
+                  "Heat cramps and heat exhaustion are likely; heat stroke is probable with continued activity.",
+                  "Heat stroke is imminent."]
+        if degC:
+            if HI>27.0 and HI<=32.0:
+                return levels[0],warnings[0]
+            elif HI>32.0 and HI<=39.0:
+                return levels[1], warnings[1]
+            elif HI>39.0 and HI<=51.0:
+                return levels[2], warnings[2]
+            elif HI>51.0:
+                return levels[3], warnings[3]
+        else:
+            if HI>80.0 and HI<=90.0:
+                return levels[0],warnings[0]
+            elif HI>90.0 and HI<=103.0:
+                return levels[1], warnings[1]
+            elif HI>103.0 and HI<=123.0:
+                return levels[2], warnings[2]
+            elif HI>123.0:
+                return levels[3], warnings[3]
