@@ -1,7 +1,10 @@
 __author__="Gábor Tóth-Molnár"
-__version__="1.2.1"
+__version__="1.2.2"
 
 # changelog:
+# 1.2.2
+# in FileConverters CsvColumnToArray float() is omitted because of datetime objects
+#
 # 1.2.1:
 # FileConverters renamed to FileTweaks. LogFilenameGenerator added to this class.
 #
@@ -211,13 +214,10 @@ class FileTweaks:
         for line in inputFile:
             snippedtobeList = [x.strip() for x in line.split(delimiter)]
             for i in range(0, len(columns)):
-                try:
-                    if HumanMode:
-                        output[i].append(float(snippedtobeList[columns[i]-1]))
-                    else:
-                        output[i].append(float(snippedtobeList[columns[i]]))
-                except:
-                    raise TypeError("Array has a NaN element")
+                if HumanMode:
+                    output[i].append(snippedtobeList[columns[i]-1])
+                else:
+                    output[i].append(snippedtobeList[columns[i]])
         return output
 
     def LogFilenameGenerator(folder,CommonName):
@@ -284,6 +284,7 @@ class Science:
                 return levels[2], warnings[2]
             elif HI>51.0:
                 return levels[3], warnings[3]
+
         else:
             if HI>80.0 and HI<=90.0:
                 return levels[0],warnings[0]
