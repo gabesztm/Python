@@ -4,6 +4,7 @@ __version__="1.2.2"
 # changelog:
 # 1.2.2
 # in FileConverters CsvColumnToArray float() is omitted because of datetime objects
+# DewPointMagnus is added to Science
 #
 # 1.2.1:
 # FileConverters renamed to FileTweaks. LogFilenameGenerator added to this class.
@@ -294,3 +295,15 @@ class Science:
                 return levels[2], warnings[2]
             elif HI>123.0:
                 return levels[3], warnings[3]
+
+    def DewPointMagnus(Temperature, RelativeHumidity):
+        "returns the dew point according to the Magnus-formula. The input parameters' units are degree Celsius and Percent"
+        b = 18.678
+        c = 257.14
+        try:
+            from math import log
+        except ImportError:
+            raise ImportError("Please install math library.")
+        gammafunc=log(RelativeHumidity/100.0)+b*Temperature/(c+Temperature)
+        return c*gammafunc/(b-gammafunc)
+
