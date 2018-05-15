@@ -17,6 +17,8 @@ with open(NewFile, 'a') as f:
 while True:
 	try:
 		humidity, temperature= Adafruit_DHT.read_retry(Adafruit_DHT.AM2302,sensorport)
+		humidity=round(float(humidity),2)
+		temperature=round(float(temperature),2)
 	except:
 		pass
 	try:
