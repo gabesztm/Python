@@ -1,7 +1,10 @@
 __author__="Gábor Tóth-Molnár"
-__version__="1.2.2"
+__version__="1.2.3"
 
 # changelog:
+# 1.2.3
+# bugfix in CsvColumnToArray: closing the file after operation
+#
 # 1.2.2
 # in FileConverters CsvColumnToArray float() is omitted because of datetime objects
 # DewPointMagnus is added to Science
@@ -219,6 +222,7 @@ class FileTweaks:
                     output[i].append(snippedtobeList[columns[i]-1])
                 else:
                     output[i].append(snippedtobeList[columns[i]])
+        inputFile.close()
         return output
 
     def LogFilenameGenerator(folder,CommonName):
