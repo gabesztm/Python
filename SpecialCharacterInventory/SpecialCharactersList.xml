@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<data>
+    <SpecialCharacter>%</SpecialCharacter>
+    <SpecialCharacter>‰</SpecialCharacter>
+    <SpecialCharacter>‱</SpecialCharacter>
+    <SpecialCharacter>№</SpecialCharacter>
+    <SpecialCharacter>°</SpecialCharacter>
+    <SpecialCharacter>×</SpecialCharacter>
+    <SpecialCharacter>⋅</SpecialCharacter>
+    <SpecialCharacter>∫</SpecialCharacter>
+    <SpecialCharacter>∂</SpecialCharacter>
+    <SpecialCharacter>≠</SpecialCharacter>
+    <SpecialCharacter>≤</SpecialCharacter>
+    <SpecialCharacter>≥</SpecialCharacter>
+    <SpecialCharacter>±</SpecialCharacter>
+    <SpecialCharacter>∓ </SpecialCharacter>
+    <SpecialCharacter>∝</SpecialCharacter>
+    <SpecialCharacter>∼</SpecialCharacter>
+    <SpecialCharacter>≈</SpecialCharacter>
+    <SpecialCharacter>≝</SpecialCharacter>
+    <SpecialCharacter>→</SpecialCharacter>
+    <SpecialCharacter>←</SpecialCharacter>
+    <SpecialCharacter>Σ</SpecialCharacter>
+    <SpecialCharacter>∏</SpecialCharacter>
+    <SpecialCharacter>∞</SpecialCharacter>
+    <SpecialCharacter>Ω</SpecialCharacter>
+    <SpecialCharacter>µ</SpecialCharacter>
+    <SpecialCharacter>σ</SpecialCharacter>
+    <SpecialCharacter>π</SpecialCharacter>
+    <SpecialCharacter>ρ</SpecialCharacter>
+    <SpecialCharacter>™</SpecialCharacter>
+    <SpecialCharacter>®</SpecialCharacter>
+    <SpecialCharacter>©</SpecialCharacter>
+    <SpecialCharacter>§</SpecialCharacter>
+</data>
