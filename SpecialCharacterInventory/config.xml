@@ -4,9 +4,9 @@
     <OriginalX>300</OriginalX>
     <OriginalY>50</OriginalY>
     <!--Height of the window when the special characters panel is expanded-->
-    <ExpandedY>170</ExpandedY>
+    <ExpandedY>270</ExpandedY>
     <!--The number of columns in the special characters panel-->
-    <MaxColumnsNumber>7</MaxColumnsNumber>
+    <MaxColumnsNumber>5</MaxColumnsNumber>
     <!--Use Tkinter color chart names to setup the colors-->
     <MainColor>gray14</MainColor>
     <DropDownButtonColor>gray20</DropDownButtonColor>

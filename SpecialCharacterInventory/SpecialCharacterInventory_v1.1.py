@@ -1,5 +1,6 @@
 import tkinter as tk
 import xml.etree.ElementTree as ET
+import pyperclip
 
 
 configtree=ET.parse("config.xml")
@@ -18,7 +19,7 @@ hovercolor=configroot.find("DropDownButtonHoverColor").text
 buttonbordercolor=configroot.find("ButtonBorderColor").text
 
 SpecChars=[]
-ScTextList=[]
+ScButtonList=[]
 
 tree = ET.parse('SpecialCharactersList.xml')
 xmlroot=tree.getroot()
@@ -27,16 +28,12 @@ for specchar in xmlroot.findall("SpecialCharacter"):
     SpecChars.append(specchar.text)
 
 
-def set_text(text):
-    global entry
-    entry.delete(0,"end")
-    entry.insert(0, text)
-    print(text)
-
+def copytoclipboard(character):
+    pyperclip.copy(character)
 
 
 def togglesize(*args):
-    global root, geometry, dropdownButton, ButtonFrame, entry,ScButtonList
+    global root, geometry, dropdownButton, ButtonFrame,ScButtonList
     if geometry=="original":
         root.geometry("{}x{}".format(expandedX, expandedY))
         dropdownButton.configure(text="▲")
@@ -45,10 +42,9 @@ def togglesize(*args):
         sc_row=1
         sc_col=0
         for sc in SpecChars:
-            sct=tk.Text(SCframe, height=1,width=2, relief="groove",highlightbackground=maincolor)
-            sct.insert(1.5,str(sc))
-            sct.grid(row=sc_row, column=sc_col)
-            ScTextList.append(sct)
+            scb=tk.Button(SCframe, width=1,text=str(sc),highlightbackground=maincolor, command=lambda value=sc:copytoclipboard(str(value)))
+            scb.grid(row=sc_row, column=sc_col)
+            ScButtonList.append(scb)
             sc_col += 1
             if (sc_col == MAX_COLUMNS):
                 sc_col = 0
@@ -57,8 +53,8 @@ def togglesize(*args):
     else:
         root.geometry("{}x{}".format(originalX, originalY))
         dropdownButton.configure(text="▼")
-        for text in ScTextList:
-            text.grid_forget()
+        for button in ScButtonList:
+            button.grid_forget()
         geometry = "original"
 
 
