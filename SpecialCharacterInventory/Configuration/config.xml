@@ -12,4 +12,5 @@
     <DropDownButtonColor>gray20</DropDownButtonColor>
     <DropDownButtonHoverColor>gray29</DropDownButtonHoverColor>
     <ButtonBorderColor>red3</ButtonBorderColor>
+    <SpecCharButtonPressColor>yellow</SpecCharButtonPressColor>
 </data>

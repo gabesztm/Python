@@ -1,11 +1,19 @@
 import tkinter as tk
 import xml.etree.ElementTree as ET
 import pyperclip
+from os.path import join
 
+version="v1.2 ™.G"
 
-configtree=ET.parse("config.xml")
+configfile=join("Configuration","config.xml")
+configtree=ET.parse(configfile)
 configroot=configtree.getroot()
 maincolor=configroot.find("MainColor").text
+if ("gray" in str(maincolor)) or ("black" in str(maincolor)):
+    logocolor="white"
+else:
+    logocolor="black"
+
 originalX=int(configroot.find("OriginalX").text)
 originalY=int(configroot.find("OriginalY").text)
 
@@ -17,11 +25,12 @@ MAX_COLUMNS=int(configroot.find("MaxColumnsNumber").text)
 buttoncolor=configroot.find("DropDownButtonColor").text
 hovercolor=configroot.find("DropDownButtonHoverColor").text
 buttonbordercolor=configroot.find("ButtonBorderColor").text
+scbuttonpresscolor=configroot.find("SpecCharButtonPressColor").text
 
 SpecChars=[]
 ScButtonList=[]
-
-tree = ET.parse('SpecialCharactersList.xml')
+characterlistfile=join("Configuration","SpecialCharactersList.xml")
+tree = ET.parse(characterlistfile)
 xmlroot=tree.getroot()
 
 for specchar in xmlroot.findall("SpecialCharacter"):
@@ -42,7 +51,7 @@ def togglesize(*args):
         sc_row=1
         sc_col=0
         for sc in SpecChars:
-            scb=tk.Button(SCframe, width=1,text=str(sc),highlightbackground=maincolor, command=lambda value=sc:copytoclipboard(str(value)))
+            scb=tk.Button(SCframe, width=1,text=str(sc),highlightbackground=maincolor, activebackground=scbuttonpresscolor,command=lambda value=sc:copytoclipboard(str(value)))
             scb.grid(row=sc_row, column=sc_col)
             ScButtonList.append(scb)
             sc_col += 1
@@ -69,6 +78,8 @@ ButtonFrame=tk.Frame(root,bg=maincolor)
 ButtonFrame.grid(row=0, column=0)
 dropdownButton=tk.Button(ButtonFrame, width=20, text="▼",command=togglesize,highlightbackground=buttonbordercolor,bg=buttoncolor,activebackground=hovercolor, anchor="center")
 dropdownButton.grid(row=0, column=0, pady=5)
+vl=tk.Label(root,text=version, bg=maincolor,fg=logocolor)
+vl.grid(row=0,column=1)
 root.grid_columnconfigure(0, weight=1)
 root.resizable(False,False)
 root.mainloop()
