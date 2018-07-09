@@ -1,3 +1,7 @@
+"Batch rename script can load multiple files from a directory and removes specified amount of characters from the beginning or from the end of the filename"
+
+
+
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import ntpath
