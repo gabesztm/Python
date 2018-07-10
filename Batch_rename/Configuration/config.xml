@@ -2,7 +2,7 @@
 <data>
     <!--Width and height of the window when the special characters panel is collapsed-->
     <OriginalX>1010</OriginalX>
-    <OriginalY>400</OriginalY>
+    <OriginalY>500</OriginalY>
     <!--Use tkinter color chart names-->
     <MainColor>gray29</MainColor>
     <TextColor>gray5</TextColor>
