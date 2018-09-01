@@ -6,7 +6,7 @@ cpuLabels=[]
 cpuCanvases=[]
 canvaslength=50
 NumOfCpu=psutil.cpu_count()
-CanvasStuff=[]
+
 
 def setcolor(value):
     greenuntil=40.0
