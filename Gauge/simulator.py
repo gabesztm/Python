@@ -37,8 +37,10 @@ width=200
 gaugefrom=0
 gaugeto=10
 IsLabel=True
+
 gauge1=Gauge(root,width,gaugefrom,gaugeto, IsLabel)
 gauge1.pack()
+
 tk.Button(root, text=" + ", command=Increase).pack()
 tk.Button(root, text=" - ", command=Decrease).pack()
 
