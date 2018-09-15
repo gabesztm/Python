@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <!--your name-->
+    <user>Gábor</user>
+    <browserexecutable>/usr/bin/google-chrome</browserexecutable>
+    <!--Width and height of the window when the special characters panel is collapsed-->
+    <OriginalX>600</OriginalX>
+    <OriginalY>50</OriginalY>
+    <!--Width and Height of the window when the special characters panel is expanded-->
+    <ExpandedX>1200</ExpandedX>
+    <ExpandedY>270</ExpandedY>
+    <!--The number of columns in the special characters panel-->
+    <MaxColumnsNumber>1</MaxColumnsNumber>
+    <!--Use Tkinter color chart names to setup the colors-->
+    <MainColor>gray14</MainColor>
+    <DropDownButtonColor>gray20</DropDownButtonColor>
+    <DropDownButtonHoverColor>gray29</DropDownButtonHoverColor>
+    <ButtonBorderColor>red3</ButtonBorderColor>
+    <SpecCharButtonPressColor>yellow</SpecCharButtonPressColor>
+</data>

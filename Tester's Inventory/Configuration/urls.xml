@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <url>
+        <name>Intranet</name>
+        <address>intranet.yourcompany.com</address>
+        <type>work</type>
+    </url>
+    <url>
+        <name>Phonebook</name>
+        <address>phonebook.yourcompany.com</address>
+        <type>work</type>
+    </url>
+    <url>
+        <name>LinkedIn</name>
+        <address>https://linkedin.com</address>
+        <type>private</type>
+    </url>
+    <url>
+        <name>FTP Server</name>
+        <address>ftp.yourcompany.com</address>
+        <type>work</type>
+    </url>
+    <url>
+        <name>Youtube</name>
+        <address>youtube.com</address>
+        <type>private</type>
+    </url>
+    <!--<url>-->
+        <!--<name></name>-->
+        <!--<address></address>-->
+        <!--<type></type>-->
+    <!--</url>-->
+</data>
