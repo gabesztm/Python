@@ -28,6 +28,7 @@ class Gauge(tk.Widget):
         step=pointTo-self._from
         rotatedegree=180/_range*step
         self.can.delete(self.arm)
+        del(self.arm)
         armX=self.armlength*cos(radians(rotatedegree))
         armY=self.armlength*sin(radians(rotatedegree))
         self.arm=self.can.create_line(self.armlength-armX,self.armlength-armY,self.armlength, self.armlength, width=4,fill=color)
