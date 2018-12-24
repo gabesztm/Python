@@ -1,5 +1,6 @@
 import psutil   #pip3 install psutil
 import tkinter as tk
+import gauge
 version="v1.0  ™.G"
 
 cpuLabels=[]
